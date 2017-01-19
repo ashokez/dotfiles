@@ -10,31 +10,20 @@ Plug 'tpope/vim-fugitive'
 "filesystem
 Plug 'scrooloose/nerdtree'
 Plug 'ctrlpvim/ctrlp.vim'
-let g:ctrlp_working_path_mode = 'wa'
-"python sytax checker
-Plug 'nvie/vim-flake8'
-Plug 'vim-scripts/Pydiction'
-let g:pydiction_location = '$VIM/plugged/pydiction/complete-dict'
-Plug 'vim-scripts/indentpython.vim'
-Plug 'scrooloose/syntastic'
+let g:ctrlp_working_path_mode = 'w'
 
-"auto-completion stuff
-Plug 'Valloric/YouCompleteMe'
+Plug 'sheerun/vim-polyglot'
+Plug 'scrooloose/syntastic'
 Plug 'ervandew/supertab'
 
 "Colors!!!
 Plug 'altercation/vim-colors-solarized'
-
 call plug#end()
 
 filetype plugin indent on    " enables filetype detection
 
-"autocomplete
-let g:ycm_autoclose_preview_window_after_completion=1
-
 "custom keys
 let mapleader = "\<Space>"
-map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 map <Leader>y "+y
 map <Leader>d "+d
 map <Leader>p "+p
@@ -105,7 +94,7 @@ if has('gui_running')
         " au GUIEnter * set fullscreen
     endif
 
-    " Set a pretty font
+" Set a pretty font
     if has('win32')
         " set guifont=Consolas:h11:b
         set guifont=Inconsolata:h11:b
@@ -120,28 +109,11 @@ else
 endif
 
 let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
-let g:NERDTreeQuitOnOpen = 1
+" let g:NERDTreeQuitOnOpen = 1
 let g:nerdtree_tabs_open_on_gui_startup=0
 
 "turn on numbering
 set nu
-
-"python with virtualenv support
-py3 << EOF
-import os.path
-import sys
-import vim
-if 'VIRTUA_ENV' in os.environ:
-  project_base_dir = os.environ['VIRTUAL_ENV']
-  sys.path.insert(0, project_base_dir)
-  activate_this = os.path.join(project_base_dir,'bin/activate_this.py')
-  execfile(activate_this, dict(__file__=activate_this))
-EOF
-
-"it would be nice to set tag files by the active virtualenv here
-":set tags=~/mytags "tags for ctags and taglist
-"omnicomplete
-autocmd FileType python set omnifunc=pythoncomplete#Complete
 
 "------------Start Python PEP 8 stuff----------------
 " Number of spaces that a pre-existing tab is equal to.
@@ -164,7 +136,7 @@ au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 au BufRead,BufNewFile *.py,*.pyw, set textwidth=100
 
 " Use UNIX (\n) line endings.
-au BufNewFile *.py,*.pyw,*.c,*.h set fileformat=unix
+au BufNewFile *.py,*.pyw,*.c,*.h,*.sh set fileformat=unix
 
 " Set the default file encoding to UTF-8:
 set encoding=utf-8
@@ -178,8 +150,10 @@ autocmd FileType python set autoindent
 
 " make backspaces more powerfull
 set backspace=indent,eol,start
-
 "----------Stop python PEP 8 stuff--------------
 
 "js stuff"
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
+
+set noerrorbells visualbell t_vb=
+autocmd GUIEnter * set visualbell t_vb=
