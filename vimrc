@@ -1,4 +1,5 @@
 "curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+"curl -LO https://raw.githubusercontent.com/seebi/dircolors-solarized/master/dircolors.256dark && eval dircolors dircolors.256dark
 set nocompatible
 filetype off
 
