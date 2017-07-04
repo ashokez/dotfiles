@@ -4,7 +4,7 @@ set nocompatible
 filetype off
 
 """"""""""" Plugins """""""""""""
-call plug#begin('$VIM/plugged')
+call plug#begin('~/.vim/plugged')
 
 "git interface
 Plug 'tpope/vim-fugitive'
@@ -115,7 +115,7 @@ let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 let g:nerdtree_tabs_open_on_gui_startup=0
 
 "turn on numbering
-set nu
+"set nu
 
 "------------Start Python PEP 8 stuff----------------
 " Number of spaces that a pre-existing tab is equal to.
